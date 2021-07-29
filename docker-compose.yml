@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  postgres_db:
+    image: postgres:12
+    container_name: "postgres"
+    environment:
+        - POSTGRES_DB=bolao
+        - POSTGRES_USER=bolao
+        - POSTGRES_PASSWORD=bolao123
+    volumes:
+      - "./data/postgres:/var/lib/postgresql/data"
+    ports:
+      - 5432:5432
