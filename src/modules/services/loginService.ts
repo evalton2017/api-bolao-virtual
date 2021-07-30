@@ -46,7 +46,7 @@ class LoginService {
           if (!response.statusCode) {
             const userLogado: UserLogado = new UserLogado();
             this.setUserLogado(response, userLogado);
-            callback(userLogado);
+            callback(response);
           } else {
             callback(new AppError('Email ou senha invalido.'));
           }

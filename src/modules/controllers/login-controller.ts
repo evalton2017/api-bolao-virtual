@@ -24,6 +24,7 @@ class LoginController {
     const auth = new Auth();
     const service = new LoginService(auth);
     const user = req.body;
+    console.log(user)
    return service.signInwithWmailAndPassword(user, (response: Response) => {
      if (response) {
         res.send(response);
