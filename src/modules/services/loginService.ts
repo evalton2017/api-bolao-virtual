@@ -10,7 +10,7 @@ class LoginService {
   async createdUser(pessoa: Pessoa, callback: any): Promise<any> {
     try {
       await this.auth.SigUpWithWmailAndPassword(
-        pessoa.email,
+        pessoa.email = pessoa.email?.toLocaleLowerCase(),
         pessoa.password,
         (response: any) => {
           if (response.statusCode != 400) {
@@ -27,8 +27,9 @@ class LoginService {
   }
 
   async cadastrarPessoa(pessoa: any): Promise<void> {
-    console.log(pessoa)
     const repository = getRepository(Pessoa);
+    const perfis = [{id: null, nome: 'USUARIO'}]
+    pessoa.perfis = perfis;
     repository.save(pessoa);
    //this.setCustom(pessoa.email, pessoa.perfis[0].nome);
  }

@@ -1,7 +1,8 @@
 import 'reflect-metadata';
 import 'dotenv/config';
-import { json, urlencoded } from 'body-parser';
 import express, {Request, Response, NextFunction} from 'express';
+import 'express-async-errors';
+import { json, urlencoded } from 'body-parser';
 import { AppLogger } from './util/appLogger';
 import compression from 'compression';
 import * as cors from 'cors';
@@ -10,6 +11,7 @@ import publicRouter from './routes/public-router';
 import Auth from './firebase-auth';
 import AppError from './shared/errors/AppError';
 import Database from './util/db';
+import apostaRouter from './routes/aposta-router';
 
 
 class StartUp {
@@ -41,7 +43,8 @@ class StartUp {
   routes() {
     this.app.use("/api", loginRouter);
     this.app.use("/api/public", publicRouter);
-    this.app.use(this.auth.validate);
+ //   this.app.use(this.auth.validate);
+    this.app.use("/api/apostas", apostaRouter);
   }
 
   private configureMiddleware() {

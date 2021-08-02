@@ -13,6 +13,9 @@ export class Aposta{
     status?: string;
 
     @Column({nullable: true})
+    vigencia?: string;
+
+    @Column({nullable: true})
     ativo?: boolean;
 
     @Column("decimal", { precision: 8, scale: 2 })
