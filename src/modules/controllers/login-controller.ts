@@ -18,13 +18,12 @@ class LoginController {
       }
     });
   }
-
+  
   //REALIZA O ACESSO
   async signInwithWmailAndPassword(req: Request, res: Response): Promise<Response> {
     const auth = new Auth();
     const service = new LoginService(auth);
     const user = req.body;
-    console.log(user)
    return service.signInwithWmailAndPassword(user, (response: Response) => {
      if (response) {
         res.send(response);

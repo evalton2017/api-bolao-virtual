@@ -27,6 +27,7 @@ class LoginService {
   }
 
   async cadastrarPessoa(pessoa: any): Promise<void> {
+    console.log(pessoa)
     const repository = getRepository(Pessoa);
     repository.save(pessoa);
    //this.setCustom(pessoa.email, pessoa.perfis[0].nome);
