@@ -33,16 +33,17 @@ class ApostaService {
   }
 
  async buscarApostas(email: string) {
-    const pessoa = this.converterPessoa(pessoaService.getPessoaByEmail(email));
+    let pessoa = await pessoaService.getPessoaByEmail(email);
+    pessoa = this.converterPessoa(pessoa);
     const vigencia = vigenciaAtual();
-    return  await getRepository(Aposta)
-   .createQueryBuilder("aposta") .leftJoinAndSelect("aposta.pessoa", "pessoa")
-   .leftJoinAndSelect("aposta.numeros", "apostas")
-   .setParameters({ idpessoa: pessoa.id })
-   .setParameters({ vigencia: vigencia })
-   .where("pessoa.id = :idpessoa")
-   .where("aposta.vigencia = :vigencia")
-   .getMany();
+    return await getRepository(Aposta)
+    .createQueryBuilder("aposta").leftJoinAndSelect("aposta.pessoa", "pessoa")
+    .leftJoinAndSelect("aposta.numeros", "numeros")
+    .setParameters({ id: pessoa.id })
+    .setParameters({ vigencia: vigencia })
+    .where("pessoa.id= :id")
+    .andWhere("aposta.vigencia= :vigencia")
+    .getMany();
 
   }
 

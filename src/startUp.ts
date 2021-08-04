@@ -43,7 +43,7 @@ class StartUp {
   routes() {
     this.app.use("/api", loginRouter);
     this.app.use("/api/public", publicRouter);
- //   this.app.use(this.auth.validate);
+    this.app.use(this.auth.validate);
     this.app.use("/api/apostas", apostaRouter);
   }
 
